@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить заявку</title>
+</head>
+<body>
+    <h1>Добавить заявку</h1>
+    <form action="/dispatcher/add-order" method="post">
+        <label>Пункт назначения: <input type="text" name="destination" required></label><br>
+        <label>Вес груза: <input type="number" name="weight" step="0.1" required></label><br>
+        <label>Тип груза: <input type="text" name="cargoType" required></label><br>
+        <button type="submit">Добавить</button>
+    </form>
+    <a href="/dispatcher/orders">Назад</a>
+</body>
+</html>

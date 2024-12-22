@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добро пожаловать</title>
+</head>
+<body>
+    <h1>Добро пожаловать, <span th:text="${user.username}"></span>!</h1>
+    <p>Ваша роль: <span th:text="${user.role}"></span></p>
+    <a href="/">Выход</a>
+</body>
+</html>

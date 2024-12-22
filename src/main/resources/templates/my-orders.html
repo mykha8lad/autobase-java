@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Мои рейсы</title>
+</head>
+<body>
+    <h1>Мои рейсы</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Пункт назначения</th>
+            <th>Вес</th>
+            <th>Тип груза</th>
+            <th>Статус</th>
+        </tr>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.destination}"></td>
+            <td th:text="${order.weight}"></td>
+            <td th:text="${order.cargoType}"></td>
+            <td th:text="${order.status}"></td>
+        </tr>
+    </table>
+</body>
+</html>
