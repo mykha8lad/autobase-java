@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список заявок</title>
+</head>
+<body>
+    <h1>Список заявок</h1>
+    <a href="/dispatcher/add-order">Добавить заявку</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Пункт назначения</th>
+                <th>Груз</th>
+                <th>Водитель</th>
+                <th>Автомобиль</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.destination}"></td>
+                <td th:text="${order.cargo}"></td>
+                <td th:text="${order.driverName}"></td>
+                <td th:text="${order.vehicle}"></td>
+                <td>
+                    <a th:href="@{/dispatcher/delete-order/{id}(id=${order.id})}">Удалить</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

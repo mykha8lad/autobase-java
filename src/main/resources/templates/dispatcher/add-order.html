@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить заявку</title>
+</head>
+<body>
+    <h1>Добавить заявку</h1>
+    <form th:action="@{/dispatcher/add-order}" method="post">
+        <label for="destination">Пункт назначения:</label>
+        <input type="text" id="destination" name="destination" />
+        <br>
+        <label for="cargo">Груз:</label>
+        <input type="text" id="cargo" name="cargo" />
+        <br>
+        <label for="driverName">Водитель:</label>
+        <input type="text" id="driverName" name="driverName" />
+        <br>
+        <label for="vehicle">Автомобиль:</label>
+        <input type="text" id="vehicle" name="vehicle" />
+        <br>
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

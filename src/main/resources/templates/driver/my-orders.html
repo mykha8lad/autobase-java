@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Мои рейсы</title>
+</head>
+<body>
+    <h1>Мои рейсы для <span th:text="${username}"></span></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Пункт назначения</th>
+                <th>Груз</th>
+                <th>Статус</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.destination}"></td>
+                <td th:text="${order.cargo}"></td>
+                <td th:text="${order.status}"></td>
+                <td>
+                    <form th:action="@{/driver/complete-order/{id}(id=${order.id})}" method="post">
+                        <button type="submit">Завершить</button>
+                    </form>
+                    <form th:action="@{/driver/request-repair/{id}(id=${order.id})}" method="post">
+                        <button type="submit">Запросить ремонт</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
