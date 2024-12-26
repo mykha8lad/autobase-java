@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AutoBase
+    username: sa
+    password: admin
+    driverClassName: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    user: sa
+    password: admin
+    schemas: public
+    locations: classpath:db/migration
+    url: jdbc:postgresql://localhost:5432/AutoBase
+    baseline-on-migrate: true
+
+data:
+  cities: src/main/resources/cities.txt
+  cars: src/main/resources/cars.txt
+  names: src/main/resources/names.txt
+  lastnames: src/main/resources/lastnames.txt
+  cargoTypes: src/main/resources/cargoTypes.txt
+
+value:
+  averageCarSpeed: 100
+  title: "My AutoBase"
+  alertTextColorError: "darkred"
+  alertTextColorSuccess: "darkgreen"

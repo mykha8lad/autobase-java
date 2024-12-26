@@ -1,0 +1,2 @@
+ALTER TABLE public.CargoType
+ADD COLUMN name VARCHAR(255) NOT NULL;

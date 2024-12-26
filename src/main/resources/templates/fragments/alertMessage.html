@@ -1,0 +1,10 @@
+<div th:if="${message != null}" class="container">
+    <th:block>
+        <div th:class="${message.getColor() == 'darkgreen'}
+                        ? 'alert alert-success alert-dismissible fade show'
+                        : 'alert alert-danger alert-dismissible fade show'" role="alert">
+            <strong th:text="${message.getMessage()}"></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </th:block>
+</div>

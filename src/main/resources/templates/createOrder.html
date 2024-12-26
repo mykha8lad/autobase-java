@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title th:utext="${title}"></title>
+    </head>
+    <body>
+        <th:block th:include="/fragments/menu"></th:block>
+
+        <div class="d-flex justify-content-center m-2">
+            <div class="card p-4" style="width: 50%;">
+                <h3 class="text-center">Create order</h3>
+                <form name='createOrder' th:action="@{/order/create}" method='POST'>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Select city</label>
+                        <select id="city" name="idCity" class="form-select">
+                            <option value="">-- Select a city --</option>
+                            <option th:each="city : ${cities}"
+                                    th:value="${city.id}"
+                                    th:text="${city.name}">City Name</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cargo" class="form-label">Select cargo type</label>
+                        <select id="cargo" name="idCargoType" class="form-select">
+                            <option value="">-- Select a cargo type --</option>
+                            <option th:each="cargo : ${cargoTypes}"
+                                    th:value="${cargo.id}"
+                                    th:text="${cargo.name}">Cargo Type Name</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Weight(kg)</label>
+                        <input type="number" class="form-control" name="weight" id="weight">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button name="submit" type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

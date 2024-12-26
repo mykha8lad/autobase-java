@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title th:utext="${title}"></title>
+    </head>
+    <body>
+        <th:block th:include="/fragments/menu"></th:block>
+
+        <th:block th:include="/fragments/alertMessage"></th:block>
+
+        <!-- фильтрация -->
+        <div class="d-flex justify-content-center m-3">
+            <div class="card p-4" style="width: 50%;">
+                <form th:action="@{/cars/get}" method="GET">
+                    <div class="mb-3">
+                        <label for="isFree" class="form-label">Select Car Free:</label>
+                        <select id="isFree" class="form-select" th:field="*{carFilterDto.isFree}">
+                            <option value="">-- All --</option>
+                            <option value="true">Is Free</option>
+                            <option value="false">Not Free</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="isBroker" class="form-label">Select Car Broker:</label>
+                        <select id="isBroker" class="form-select" th:field="*{carFilterDto.isBroker}">
+                            <option value="">-- All --</option>
+                            <option value="true">Is Broker</option>
+                            <option value="false">Not Broker</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- если пустой список, то выводим сообщение -->
+        <div th:if="${carsDto.isEmpty()}" class="d-flex justify-content-center mt-3">
+            <h3>Cars list is empty...</h3>
+        </div>
+
+        <!-- вывод списка -->
+        <div class="container">
+            <table th:if="${!carsDto.isEmpty()}" class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Carrying</th>
+                        <th scope="col">Is free</th>
+                        <th scope="col">Is broker</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "carDto : ${carsDto}">
+                        <th class="align-middle" scope="row" th:utext="${carDto.name}">...</th>
+                        <td class="align-middle" th:utext="${carDto.carrying}">...</td>
+                        <td class="align-middle" th:class="${carDto.free} ? 'text-success fw-bolder' : 'text-danger fw-bolder'">
+                            <span th:utext="${carDto.free} ? 'Yes' : 'No'"></span>
+                        </td>
+                        <td class="align-middle" th:class="${carDto.broker} ? 'text-success fw-bolder' : 'text-danger fw-bolder'">
+                            <span th:utext="${carDto.broker} ? 'Yes' : 'No'"></span>
+                        </td>
+                        <td>
+                            <div class="d-flex" th:if="${carDto.broker}">
+                                <form class="ms-1" th:action="@{/car/from-broker}" method="POST">
+                                    <input type="hidden" name="carId" th:value="${carDto.carId}"/>
+                                    <button type="submit" class="btn btn-success">From broker</button>
+                                </form>
+                            </div>
+                            <div th:if="${!carDto.broker}">
+                                <span>✅</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+</html>

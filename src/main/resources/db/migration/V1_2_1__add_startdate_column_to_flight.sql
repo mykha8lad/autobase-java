@@ -1,0 +1,2 @@
+ALTER TABLE public.Flight
+ADD COLUMN start_date TIMESTAMP NOT NULL;

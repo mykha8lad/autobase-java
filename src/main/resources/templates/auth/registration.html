@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Registration</title>
+    </head>
+    <body>
+        <th:block th:include="/fragments/menu"></th:block>
+
+        <th:block th:include="/fragments/alertMessage"></th:block>
+
+        <div class="d-flex justify-content-center m-2">
+            <div class="card p-4" style="width: 50%;">
+                <h3 class="text-center">Registration</h3>
+                <form name='regForm' th:action="@{/registration}" th:object="${userForm}" method='POST'>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="name" th:field="*{name}" th:value="*{name}" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Surname</label>
+                        <input type="text" class="form-control" id="surname" th:field="*{surname}" th:value="*{surname}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numTel" class="form-label">Num tel</label>
+                        <input type="text" class="form-control" id="numTel" th:field="*{numTel}" th:value="*{numTel}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="experience" class="form-label">Experience</label>
+                        <input type="number" class="form-control" id="experience" th:field="*{experience}" th:value="*{experience}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" th:field="*{encryptedPassword}" th:value="*{encryptedPassword}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passwordConfirm" class="form-label">Confirm password</label>
+                        <input type="password" class="form-control" id="passwordConfirm" th:field="*{passwordConfirm}" th:value="*{passwordConfirm}" required>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Registration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+</html>

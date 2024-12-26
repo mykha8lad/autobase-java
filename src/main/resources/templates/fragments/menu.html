@@ -1,0 +1,30 @@
+<div xmlns:th="http://www.thymeleaf.org">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" th:href="@{/}">AutoBase</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+          <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="nav-link" th:href="@{/order/create}">Create order</a>
+          <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="nav-link" th:href="@{/orders/get}">Orders</a>
+          <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="nav-link" th:href="@{/flights/get}">Flights</a>
+          <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="nav-link" th:href="@{/cars/get}">Cars</a>
+
+          <a th:if="${#request.isUserInRole('ROLE_USER')}" class="nav-link" th:href="@{/flight/get}">My flight</a>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <a th:if="${#request.userPrincipal == null}" class="nav-link" th:href="@{/login}">Sign in</a>
+          <a th:if="${#request.userPrincipal == null}" class="nav-link" th:href="@{/registration}">Sign up</a>
+
+          <a th:if="${#request.userPrincipal != null}" class="nav-link" th:href="@{/userInfo}">
+            Hello, <span th:utext="${#request.userPrincipal.name}"></span>
+          </a>
+          <a th:if="${#request.userPrincipal != null}" class="nav-link" th:href="@{/logout}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
